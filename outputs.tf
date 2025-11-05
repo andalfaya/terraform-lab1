@@ -1,29 +1,53 @@
-# Nombre del contenedor web
-output "web_container_name" {
-  description = "Nombre del contenedor web creado"
-  value       = docker_container.web.name
+# ========================
+# Web
+# ========================
+output "web_names" {
+  description = "Nombre del contenedor web"
+  value       = [for c in docker_container.web : c.name]
 }
 
-# Puerto externo del contenedor web
-output "web_container_port" {
+output "web_ports" {
   description = "Puerto externo del contenedor web"
-  value       = docker_container.web.ports[0].external
+  value       = [for c in docker_container.web : c.ports[0].external]
 }
 
-# Dirección IP interna del contenedor web (a través de network_data)
-output "web_container_ip" {
+output "web_ips" {
   description = "Dirección IP interna del contenedor web"
-  value       = docker_container.web.network_data[0].ip_address
+  value       = [for c in docker_container.web : c.network_data[0].ip_address]
 }
 
-# Nombre del contenedor Redis
-output "redis_container_name" {
+# ========================
+# Redis
+# ========================
+output "redis_names" {
   description = "Nombre del contenedor Redis"
-  value       = docker_container.redis.name
+  value       = [for c in docker_container.redis : c.name]
 }
 
-# Dirección IP interna del contenedor Redis (a través de network_data)
-output "redis_container_ip" {
+output "redis_ports" {
+  description = "Puerto externo del contenedor Redis"
+  value       = [for c in docker_container.redis : c.ports[0].external]
+}
+
+output "redis_ips" {
   description = "Dirección IP interna del contenedor Redis"
-  value       = docker_container.redis.network_data[0].ip_address
+  value       = [for c in docker_container.redis : c.network_data[0].ip_address]
+}
+
+# ========================
+# MySQL
+# ========================
+output "mysql_names" {
+  description = "Nombre del contenedor MySQL"
+  value       = [for c in docker_container.mysql : c.name]
+}
+
+output "mysql_ports" {
+  description = "Puerto externo del contenedor MySQL"
+  value       = [for c in docker_container.mysql : c.ports[0].external]
+}
+
+output "mysql_ips" {
+  description = "Dirección IP interna del contenedor MySQL"
+  value       = [for c in docker_container.mysql : c.network_data[0].ip_address]
 }
