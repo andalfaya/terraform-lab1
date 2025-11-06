@@ -31,7 +31,7 @@ resource "docker_image" "mysql" {
 # Contenedor web (Nginx)
 resource "docker_container" "web" {
   count = var.web_count
-  name  = "${var.web_name}-${count.index + 1}"
+  name  = "${terraform.workspace}-${var.web_name}-${count.index + 1}"
   image = docker_image.nginx.image_id
 
   ports {
@@ -47,7 +47,7 @@ resource "docker_container" "web" {
 # Contenedor Redis
 resource "docker_container" "redis" {
   count = var.redis_count
-  name  = "${var.redis_name}-${count.index + 1}"
+  name  = "${terraform.workspace}-${var.redis_name}-${count.index + 1}"
   image = docker_image.redis.image_id
 
   ports {
@@ -72,7 +72,7 @@ resource "docker_container" "redis" {
 # Contenedor MySQL
 resource "docker_container" "mysql" {
   count = var.mysql_count
-  name  = "${var.mysql_name}-${count.index + 1}"
+  name  = "${terraform.workspace}-${var.mysql_name}-${count.index + 1}"
   image = docker_image.mysql.image_id
 
   ports {
