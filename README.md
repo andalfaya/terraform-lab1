@@ -19,6 +19,7 @@ Antes de comenzar, inicializa Terraform en el proyecto:
 
 ```bash
 terraform init
+```
 
 ## 🧩 2. Creación de Workspaces
 
@@ -26,8 +27,6 @@ Los **workspaces** permiten tener múltiples entornos aislados dentro del mismo 
 Cada workspace mantiene su propio **estado de infraestructura**, evitando conflictos entre entornos como desarrollo, pruebas y producción.
 
 Por ejemplo, puedes desplegar los mismos contenedores o recursos Docker en tres entornos distintos (`dev`, `srg`, `prod`), sin que se afecten entre sí.
-
----
 
 ### 🛠️ Crear los Workspaces
 
